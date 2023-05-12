@@ -22,15 +22,11 @@ public abstract class UOfficeTemplateNew {
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 if (nextEntry.isDirectory()) {
                     String tempPath = path + File.separator + nextEntry.getName();
-                    File tempFile = new File(tempPath);
-                    if (!tempFile.exists()) {
-                        if (!tempFile.mkdirs()) {
-                            throw new UOfficeException("创建{}失败", tempFile.getAbsolutePath());
-                        }
-                    }
+                    PathUtils.createDir(tempPath);
                 } else {
                     String tempPath = path + File.separator + nextEntry.getName();
                     File tempFile = new File(tempPath);
+                    PathUtils.createDir(tempFile.getParent());
                     FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
                     byte[] buffer = new byte[1024];
                     int read = 0;
@@ -43,6 +39,7 @@ public abstract class UOfficeTemplateNew {
             }
             templatePath = path;
         } catch (Exception e) {
+            e.printStackTrace();
             PathUtils.deleteAllDir(path);
         }
     }

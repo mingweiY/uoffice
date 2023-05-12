@@ -29,6 +29,15 @@ public class PathUtils {
         return pathList;
     }
 
+    public static void createDir(String dir) {
+        File file = new File(dir);
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                throw new UOfficeException("创建{}失败", file.getAbsolutePath());
+            }
+        }
+    }
+
     private static void doWalk(String sourcePath, String targetPath, List<PathEntry> pathList) {
         File tempFile = new File(targetPath);
         if (tempFile.isDirectory()) {
