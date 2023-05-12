@@ -8,6 +8,7 @@ import com.ymw.uoffice.utils.ObjectUtils;
 import com.ymw.uoffice.utils.PathUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -257,13 +258,13 @@ public class PaddingDataGenerateXlsx extends UOfficeTemplateNew {
         if (!ObjectUtils.isEmpty(sharedStrings)) {
             String filePath = templatePath + File.separator + "xl" + File.separator + "sharedStrings.xml";
             FileOutputStream fileOutputStream = new FileOutputStream(new File(filePath));
-            fileOutputStream.write(Constant.XML_HEAD.getBytes());
-            fileOutputStream.write(sharedStrings.getSstStart().getBytes());
+            fileOutputStream.write(Constant.XML_HEAD.getBytes(StandardCharsets.UTF_8));
+            fileOutputStream.write(sharedStrings.getSstStart().getBytes(StandardCharsets.UTF_8));
             String[] si = sharedStrings.getSi();
             for (String s : si) {
-                fileOutputStream.write(s.getBytes());
+                fileOutputStream.write(s.getBytes(StandardCharsets.UTF_8));
             }
-            fileOutputStream.write("</sst>".getBytes());
+            fileOutputStream.write("</sst>".getBytes(StandardCharsets.UTF_8));
             fileOutputStream.close();
         }
     }
@@ -271,19 +272,19 @@ public class PaddingDataGenerateXlsx extends UOfficeTemplateNew {
     private void generateSheetData(SheetData sheetData) throws IOException {
         String filePath = templatePath + File.separator + "xl"+ File.separator + "worksheets" + File.separator +"sheet1.xml";
         FileOutputStream fileOutputStream = new FileOutputStream(new File(filePath));
-        fileOutputStream.write(Constant.XML_HEAD.getBytes());
-        fileOutputStream.write(sheetData.getWorkSheet().getBytes());
-        fileOutputStream.write(sheetData.getSheetPr().getBytes());
-        fileOutputStream.write(sheetData.getDimension().getBytes());
-        fileOutputStream.write(sheetData.getSheetViews().getBytes());
-        fileOutputStream.write(sheetData.getSheetFormatPr().getBytes());
-        fileOutputStream.write(sheetData.getCellWidth().getBytes());
-        fileOutputStream.write(sheetData.getSheetDataS().getBytes());
-        fileOutputStream.write(sheetData.getMergeCells().getBytes());
-        fileOutputStream.write(sheetData.getPageMargins().getBytes());
-        fileOutputStream.write(sheetData.getPageSetup().getBytes());
-        fileOutputStream.write(sheetData.getHeaderFooter().getBytes());
-        fileOutputStream.write(sheetData.getWorksheetEnd().getBytes());
+        fileOutputStream.write(Constant.XML_HEAD.getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getWorkSheet().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getSheetPr().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getDimension().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getSheetViews().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getSheetFormatPr().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getCellWidth().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getSheetDataS().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getMergeCells().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getPageMargins().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getPageSetup().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getHeaderFooter().getBytes(StandardCharsets.UTF_8));
+        fileOutputStream.write(sheetData.getWorksheetEnd().getBytes(StandardCharsets.UTF_8));
         fileOutputStream.close();
     }
 
